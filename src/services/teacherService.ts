@@ -7,8 +7,6 @@ import jwt from 'jsonwebtoken'
 import dotenv from "dotenv";
 import {loginDTO} from '../DTO/loginDTO'
 import cookies from 'cookie-parser'
-
-
 import { log } from 'console'; 
 import studentModel, { IStudent } from '../models/studentModel';
 
@@ -41,17 +39,13 @@ export const createTeacher = async (user:ITeacher):Promise<string> => {
         const saving =  await dbTeacher.save()
         return saving.id
     } catch (err) {
-        throw err
-        
+        throw err   
     }
 }
-
-
 
 // כניסת מורה
 export const login = async (req:loginDTO) => {
   const { username, password } = req
-
   try {
     const user = await Teacher.findOne({ username });
     if (!user) {
@@ -72,6 +66,7 @@ export const login = async (req:loginDTO) => {
     throw err
   }
 };
+
 // קבלת כל הסטודנטים של המורה
 export const  getStudents = async ():Promise<Array<IStudent>> => {
     try {
@@ -107,6 +102,7 @@ export const addTheScore = async (studentId:string,test: ITests) => {
         throw Error
     }  
 }
+
 //  עדכון ציון לתלמיד
 export const udateTheScore = async (testId:string, postUpdated:ITests)=>{
     try {
@@ -122,6 +118,20 @@ export const udateTheScore = async (testId:string, postUpdated:ITests)=>{
     } catch (err) {
         console.log(err);
         throw err     
+    }
+}
+
+// קבלת ציון של מבחן 
+export const getTheTest = async (postId:string) =>{
+    try {
+        const test = await Student.findById(postId) 
+        if(!test){
+            throw Error("Test undfind 😔")
+        }
+        return test
+    } catch (err) {
+        console.log(err);
+        throw err        
     }
 }
 

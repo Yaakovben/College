@@ -15,5 +15,6 @@ teacherRouter.get("/", teacherController_1.getMyStudents);
 teacherRouter.put("/:id", teacherController_1.updateTest);
 // קבלת ממוצע של הכיתה
 teacherRouter.get("/average");
-teacherRouter.get("/score/:id");
+// קבלת מבחן ספציפי
+teacherRouter.get("/score/:id", teacherController_1.getTest);
 exports.default = teacherRouter;

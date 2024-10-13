@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateTest = exports.addScore = exports.getMyStudents = exports.signin = exports.addTeacher = void 0;
+exports.getTest = exports.updateTest = exports.addScore = exports.getMyStudents = exports.signin = exports.addTeacher = void 0;
 const teacherService_1 = require("../services/teacherService");
 const addTeacher = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -76,3 +76,16 @@ const updateTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.updateTest = updateTest;
+const getTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const test = yield (0, teacherService_1.getTheTest)(req.params.id);
+        res.status(201).json({
+            msg: `this is Test`,
+            test
+        });
+    }
+    catch (err) {
+        res.status(401).json(err.message);
+    }
+});
+exports.getTest = getTest;

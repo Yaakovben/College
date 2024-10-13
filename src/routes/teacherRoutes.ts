@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addTeacher,signin,getMyStudents,addScore,updateTest} from "../controllers/teacherController";
+import { addTeacher,signin,getMyStudents,addScore,updateTest,getTest} from "../controllers/teacherController";
 
 const teacherRouter = Router();
 
@@ -21,7 +21,8 @@ teacherRouter.put("/:id",updateTest);
 // קבלת ממוצע של הכיתה
 teacherRouter.get("/average",);
 
-teacherRouter.get("/score/:id",);
+// קבלת מבחן ספציפי
+teacherRouter.get("/score/:id",getTest);
 
 
 

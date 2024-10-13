@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken'
 import dotenv from "dotenv";
 import {loginDTO} from '../DTO/loginDTO'
 
-import { log } from 'console'; 
 
 dotenv.config();
 
@@ -32,14 +31,12 @@ export const createStudent = async (user:IStudent):Promise<string> => {
         const saving =  await dbTeacher.save()
         return saving.id
     } catch (err) {
-        throw err
-        
+        throw err      
     }
 }
 
 
 // כניסת סטודנט
-
 export const login = async (req:loginDTO) => {
   const { username, password } = req
   try {

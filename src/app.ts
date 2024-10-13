@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import studentRouter from "./routes/studentRoutes";
 import teacherRouter from "./routes/teacherRoutes";
-import { errorHandler } from "./middleware/errorHandler";
+
 import connectDB from "./config/db";
 import cookieParser from "cookie-parser";
 import {specs, swaggerUi  } from './swagger-express/swagger';
@@ -26,8 +26,7 @@ app.use("/api/students", studentRouter);
 
 
 
-// Error handling middleware
-app.use(errorHandler);
+
 
 app.listen(PORT, () => {
   console.log(`Server is up and running, feel free to visit at http://localhost:${PORT}`);

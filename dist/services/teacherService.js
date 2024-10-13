@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.udateTheScore = exports.addTheScore = exports.getStudents = exports.login = exports.createTeacher = void 0;
+exports.getTheTest = exports.udateTheScore = exports.addTheScore = exports.getStudents = exports.login = exports.createTeacher = void 0;
 const teacherModel_1 = __importDefault(require("../models/teacherModel"));
 const studentModel_1 = __importDefault(require("../models/studentModel"));
 const classModel_1 = __importDefault(require("../models/classModel"));
@@ -126,3 +126,18 @@ const udateTheScore = (testId, postUpdated) => __awaiter(void 0, void 0, void 0,
     }
 });
 exports.udateTheScore = udateTheScore;
+// קבלת ציון של מבחן 
+const getTheTest = (postId) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const test = yield studentModel_1.default.findById(postId);
+        if (!test) {
+            throw Error("Test undfind 😔");
+        }
+        return test;
+    }
+    catch (err) {
+        console.log(err);
+        throw err;
+    }
+});
+exports.getTheTest = getTheTest;

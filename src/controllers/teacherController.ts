@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User, { ITeacher } from "../models/teacherModel";
-import {createTeacher, login,getStudents, addTheScore,udateTheScore} from '../services/teacherService'
+import {createTeacher, login,getStudents, addTheScore,udateTheScore, getTheTest} from '../services/teacherService'
 
 import { promises } from "dns";
 
@@ -67,9 +67,21 @@ export const updateTest = async (req: Request,res: Response,): Promise<void> => 
     res.status(201).json({
         msg:`Test successfully updated `,
         testUpdate:testUpdate
-  })
+        })
+    } catch (err) {
+        res.status(401).json((err as Error).message)     
+    } 
+};
+
+export const getTest = async (req: Request,res: Response,): Promise<void> => {
+    try {
+      const test = await getTheTest(req.params.id)
+      res.status(201).json({
+            msg:`this is Test`,
+            test      
+      })
   } catch (err) {
-  res.status(401).json((err as Error).message)     
+      res.status(401).json((err as Error).message)     
   }
   
   };
