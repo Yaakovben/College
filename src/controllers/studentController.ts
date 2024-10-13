@@ -4,7 +4,6 @@ import {createStudent, login,} from '../services/studentService'
 import { promises } from "dns";
 
 
-
 export const addStudent = async (req: Request, res: Response):Promise<void> => {
     try {
         const teacher = await createStudent(req.body)

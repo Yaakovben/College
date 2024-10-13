@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken'
 import dotenv from "dotenv";
 import {loginDTO} from '../DTO/loginDTO'
 
-
 dotenv.config();
 
 // יצירת סטודנט
