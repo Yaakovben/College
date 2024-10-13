@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addScore = exports.getMyStudents = exports.signin = exports.addTeacher = void 0;
+exports.updateTest = exports.addScore = exports.getMyStudents = exports.signin = exports.addTeacher = void 0;
 const teacherService_1 = require("../services/teacherService");
 const addTeacher = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -63,3 +63,16 @@ const addScore = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.addScore = addScore;
+const updateTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const testUpdate = yield (0, teacherService_1.udateTheScore)(req.params.id, req.body);
+        res.status(201).json({
+            msg: `Test successfully updated `,
+            testUpdate: testUpdate
+        });
+    }
+    catch (err) {
+        res.status(401).json(err.message);
+    }
+});
+exports.updateTest = updateTest;

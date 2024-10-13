@@ -64,11 +64,8 @@ export const login = async (req:loginDTO) => {
     const token = jwt.sign(
       { username: user.username, role: user.role },
       process.env.JWT_SECRET as string, 
-      { expiresIn: '1h' }
+      { expiresIn: '1h'}
     );
-    
-    
-
     return  token ;
   } catch (err) {
     console.log(err);
@@ -85,10 +82,8 @@ export const  getStudents = async ():Promise<Array<IStudent>> => {
         return students
     } catch (err) {
         console.log(err);
-        throw err
-        
+        throw err      
     }
-   
 }
 
 // הוספת ציון לתלמיד
@@ -112,6 +107,24 @@ export const addTheScore = async (studentId:string,test: ITests) => {
         throw Error
     }  
 }
+//  עדכון ציון לתלמיד
+export const udateTheScore = async (testId:string, postUpdated:ITests)=>{
+    try {
+        const updatedPost = await Student.findByIdAndUpdate(
+            testId,            
+            postUpdated,    
+            { new: true, runValidators: true }  
+        )
+        if(!updatedPost){
+            throw new Error("The Test Undfind 😔")
+        }
+        return updatedPost
+    } catch (err) {
+        console.log(err);
+        throw err     
+    }
+}
+
 
 
 

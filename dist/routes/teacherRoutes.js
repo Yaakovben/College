@@ -12,7 +12,7 @@ teacherRouter.post('/:id', teacherController_1.addScore);
 // קבלת כל התלמידים
 teacherRouter.get("/", teacherController_1.getMyStudents);
 // עדכון ציון לתלמיד
-teacherRouter.put("/:id");
+teacherRouter.put("/:id", teacherController_1.updateTest);
 // קבלת ממוצע של הכיתה
 teacherRouter.get("/average");
 teacherRouter.get("/score/:id");

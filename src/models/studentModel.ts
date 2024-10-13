@@ -20,7 +20,6 @@ export const TestsSchema = new Schema<ITests>({
   subject:{
     type:String,
     required :[true,"subject is required"],
-    minlength: [5, "way too short subject, please enter at least 5 chars"]
   },
   score:{
     type:Number,

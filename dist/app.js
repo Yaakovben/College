@@ -9,13 +9,14 @@ const studentRoutes_1 = __importDefault(require("./routes/studentRoutes"));
 const teacherRoutes_1 = __importDefault(require("./routes/teacherRoutes"));
 const errorHandler_1 = require("./middleware/errorHandler");
 const db_1 = __importDefault(require("./config/db"));
-//
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const swagger_1 = require("./swagger-express/swagger");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 1010;
 // Middleware
 app.use(express_1.default.json());
+app.use((0, cookie_parser_1.default)());
 (0, db_1.default)();
 //
 app.use('/api-docs', swagger_1.swaggerUi.serve, swagger_1.swaggerUi.setup(swagger_1.specs));
