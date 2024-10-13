@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { addUser, getUser, getUsers } from "../controllers/userController";
+import { addTeacher} from "../controllers/teacherController";
 
 const teacherRouter = Router();
 
 // יצירת מורה
-teacherRouter.post("/register",);
+teacherRouter.post("/register",addTeacher);
 
 // כניסת מורה
 teacherRouter.post("/login",);
