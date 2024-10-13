@@ -1,19 +1,16 @@
 import { Router } from "express";
 import {
-  createPost,
-  getPosts,
-  getPost,
-  updatePost,
-  deletePost,
-  addComment,
-} from "../controllers/postController";
+addStudent,
+  signin
+
+} from "../controllers/studentController";
 
 const studentRouter = Router();
 
 // הרשמת תלמיד
-studentRouter.post("/register",);
+studentRouter.post("/register",addStudent);
 // כניסת תלמיד
-studentRouter.post("/login",);
+studentRouter.post("/login",signin);
 // קבלת ציון של מבחן
 studentRouter.get("/score/:id",);
 
