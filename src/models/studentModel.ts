@@ -1,19 +1,36 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
-import { types } from "util";
-import validator from "validator";
 
-export interface ITeacher extends Document {
+export interface ITests {
+  subject: string;
+  score: Number;
+  createdAt: Date;
+}
+
+export interface IStudent extends Document {
   _id: Types.ObjectId;
   username: string;
   email: string;
   password:string,
   class:string,
-  scores:string[]
-  students: Types.ObjectId[];
-  role:string,
+  tests: ITests[];
 }
 
-export  const teacherScema = new Schema<ITeacher>({
+export const TestsSchema = new Schema<ITests>({
+  subject:{
+    type:String,
+    required :[true,"subject is required"],
+    minlength: [5, "way too short subject, please enter at least 5 chars"]
+  },
+  score:{
+    type:Number,
+  },
+  createdAt:{
+    type:Date,
+    default:Date.now
+  }
+
+});
+const StudentSchema = new Schema<IStudent>({
   username:{
     type:String,
     required :[true,"user name is required"],
@@ -38,18 +55,10 @@ export  const teacherScema = new Schema<ITeacher>({
     required :[true,"user class is required"],
 
   },
-  scores:{
-    type:[Number]
-  },
-
-  students:{
-    type:[Types.ObjectId],
-    ref:"Student"
-  },
-  role:{
-    type:String,
-    default:"Teacher"
+  tests:{
+    type:[TestsSchema]
   }
 });
 
-export default mongoose.model<ITeacher>("Teacher", teacherScema);
+
+export default mongoose.model<IStudent>("Student", StudentSchema);
