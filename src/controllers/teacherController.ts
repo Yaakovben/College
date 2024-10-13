@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import User, { ITeacher } from "../models/teacherModel";
-import {createTeacher, login,} from '../services/teacherService'
+import {createTeacher, login,getStudents, addTheScore} from '../services/teacherService'
+
 import { promises } from "dns";
 
 
@@ -28,5 +29,33 @@ export const signin = async (req: Request, res: Response):Promise<void> => {
     } catch (err) {
         res.status(401).json((err as Error).message)     
     }
+};
+
+
+export const getMyStudents = async (req: Request, res: Response):Promise<void> => {
+    try {
+        const teacher = await getStudents()
+        res.status(201).json({
+              msg:`teacher ${req.body.username} created `,
+              id:teacher
+        })
+    } catch (err) {
+        res.status(401).json((err as Error).message)     
+    }
+};
+
+
+
+export const addScore = async (req: Request,res: Response,): Promise<void> => {
+  try {
+    const studentUpdated = await addTheScore(req.params.id,req.body)
+  res.status(201).json({
+      msg:`The score added successfully 👌`,
+      post:studentUpdated         
+    })
+} catch (err) {
+    res.status(401).json((err as Error).message)     
+    }
+
 };
 

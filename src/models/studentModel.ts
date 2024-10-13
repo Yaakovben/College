@@ -11,8 +11,9 @@ export interface IStudent extends Document {
   username: string;
   email: string;
   password:string,
-  class:string,
-  tests: ITests[];
+  myclass:string,
+  tests: ITests[],
+  role:string,
 }
 
 export const TestsSchema = new Schema<ITests>({
@@ -50,13 +51,17 @@ const StudentSchema = new Schema<IStudent>({
     minlength: [5, "way too short password, please enter at least 5 chars"]
 
   },
-  class:{
+  myclass:{
     type:String,
-    required :[true,"user class is required"],
+    required :[true,"user myclass is required"],
 
   },
   tests:{
     type:[TestsSchema]
+  },
+  role:{
+    type:String,
+    default:"Student"
   }
 });
 

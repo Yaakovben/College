@@ -6,10 +6,11 @@ import jwt from 'jsonwebtoken'
 import dotenv from "dotenv";
 import {loginDTO} from '../DTO/loginDTO'
 
-
 import { log } from 'console'; 
 
 dotenv.config();
+
+// יצירת סטודנט
 export const createStudent = async (user:IStudent):Promise<string> => {
     try {
         const {username,email,password,myclass,tests} = user
@@ -25,7 +26,7 @@ export const createStudent = async (user:IStudent):Promise<string> => {
             tests
         })
         const classes:IClass[]  = await ClassModel.find({name:myclass}) 
-        if(classes.length ===1 ){
+        if(classes.length ===0 ){
             throw  new Error("There is no such class 🫢");
         }
         const saving =  await dbTeacher.save()
@@ -37,7 +38,7 @@ export const createStudent = async (user:IStudent):Promise<string> => {
 }
 
 
-
+// כניסת סטודנט
 
 export const login = async (req:loginDTO) => {
   const { username, password } = req

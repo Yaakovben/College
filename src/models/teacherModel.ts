@@ -7,7 +7,7 @@ export interface ITeacher extends Document {
   username: string;
   email: string;
   password:string,
-  class:string,
+  myclass:string,
   scores:string[]
   students: Types.ObjectId[];
   role:string,
@@ -33,9 +33,9 @@ export  const teacherScema = new Schema<ITeacher>({
     minlength: [5, "way too short password, please enter at least 5 chars"]
 
   },
-  class:{
+  myclass:{
     type:String,
-    required :[true,"user class is required"],
+    required :[true,"user myclass is required"],
 
   },
   scores:{

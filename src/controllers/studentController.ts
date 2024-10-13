@@ -9,7 +9,7 @@ export const addStudent = async (req: Request, res: Response):Promise<void> => {
     try {
         const teacher = await createStudent(req.body)
         res.status(201).json({
-              msg:`teacher ${req.body.username} created `,
+              msg:`Student ${req.body.username} created `,
               id:teacher
         })
     } catch (err) {

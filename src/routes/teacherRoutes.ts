@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addTeacher,signin} from "../controllers/teacherController";
+import { addTeacher,signin,getMyStudents,addScore} from "../controllers/teacherController";
 
 const teacherRouter = Router();
 
@@ -10,10 +10,10 @@ teacherRouter.post("/register",addTeacher);
 teacherRouter.post("/login",signin);
 
 // הוספת ציון לתלמיד
-teacherRouter.post('/:id')
+teacherRouter.post('/:id',addScore)
 
 // קבלת כל התלמידים
-teacherRouter.get("/",);
+teacherRouter.get("/",getMyStudents);
 
 // עדכון ציון לתלמיד
 teacherRouter.put("/:id",);
